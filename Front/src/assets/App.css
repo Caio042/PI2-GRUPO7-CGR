@@ -1,0 +1,122 @@
+/* App.css */
+
+/* Cores */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #b7d2e2;
+}
+
+/* Tipografia */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Layout */
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 20px;
+}
+
+/* Estilos específicos para o componente Login */
+.login {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.login {
+  /* ... */
+  width: 300px;
+  padding: 30px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login input {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.logo {
+  display: block;
+
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+
+    place-items: center;
+
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+}
+/* Estilos para o componente Cadastro */
+.cadastro-container {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.cadastro-container {
+  width: 300px;
+  padding: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cadastro-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-container input {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cadastro-compra {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.cadastro-compra {
+  width: 350px;
+  min-height: 350px;
+  padding: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cadastro-compra form {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-compra .input {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  width: 300px;
+  padding: 30px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
