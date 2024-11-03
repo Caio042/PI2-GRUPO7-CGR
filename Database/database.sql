@@ -1,6 +1,6 @@
-CREATE DATABASE gestao_estoque_glp;
+CREATE DATABASE gestao_financeira_estoque_glp;
 
-USE gestao_estoque_glp;
+USE gestao_financeira_estoque_glp;
 
 -- Tabela de usuarios
 CREATE TABLE usuarios (
@@ -37,4 +37,13 @@ CREATE TABLE controle_estoque (
     data_transacao TIMESTAMP NOT NULL,
     FOREIGN KEY (id_produto) REFERENCES produto(id_produto),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
+
+CREATE TABLE controle_financeiro ( 
+    id_financeiro INT AUTO_INCREMENT PRIMARY KEY, 
+    id_usuario INT, 
+    tipo_transacao VARCHAR(50), 
+    valor DECIMAL(10, 2), 
+    data_transacao TIMESTAMP, 
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) 
 );
