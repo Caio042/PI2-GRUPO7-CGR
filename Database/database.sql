@@ -35,15 +35,8 @@ CREATE TABLE controle_estoque (
     qtd_entrada INT,
     qtd_vendas INT,
     data_transacao TIMESTAMP NOT NULL,
+    valor_compra DECIMAL(10, 2),
+    valor_venda DECIMAL(10, 2),
     FOREIGN KEY (id_produto) REFERENCES produto(id_produto),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
-);
-
-CREATE TABLE controle_financeiro ( 
-    id_financeiro INT AUTO_INCREMENT PRIMARY KEY, 
-    id_usuario INT, 
-    tipo_transacao VARCHAR(50), 
-    valor DECIMAL(10, 2), 
-    data_transacao TIMESTAMP, 
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) 
 );
