@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: estoqueGLP
+  docker:
+    compose:
+      enabled: false
+  jpa:
+    show-sql: true
+    generate-dll: false
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    username: ${GLP_DATABASE_USERNAME}
+    password: ${GLP_DATABASE_PASSWORD}
+    url: ${GLP_DATABASE_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
