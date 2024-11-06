@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
                 .info(new Info()
                         .summary("Plataforma para controle de estoque para revendedores de gás")
                         .description("Plataforma para controle de estoque para revendedores de gás")
-                        .contact(new Contact().name().url("https://github.com/projeto-integrador-gr3/estoqueGLP"))
+                        .contact(new Contact().name("Estoque GLP").url("https://github.com/projeto-integrador-gr3/estoqueGLP"))
                         .title("Estoque GLP"));
     }
 }
