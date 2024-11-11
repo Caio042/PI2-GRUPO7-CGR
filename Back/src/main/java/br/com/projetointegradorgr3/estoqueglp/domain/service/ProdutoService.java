@@ -1,4 +1,4 @@
-package br.com.projetointegradorgr3.estoqueglp.domain.service;
+/*package br.com.projetointegradorgr3.estoqueglp.domain.service;
 
 import br.com.projetointegradorgr3.estoqueglp.domain.exception.NotFoundException;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Fornecedor;
@@ -49,3 +49,4 @@ public class ProdutoService {
         return repository.findById(id).orElseThrow(() -> new NotFoundException(RECURSO, id));
     }
 }
+*/

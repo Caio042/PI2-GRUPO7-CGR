@@ -1,4 +1,4 @@
-package br.com.projetointegradorgr3.estoqueglp.api.controller;
+/*package br.com.projetointegradorgr3.estoqueglp.api.controller;
 
 import br.com.projetointegradorgr3.estoqueglp.api.dto.ProdutoDto;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Produto;
@@ -77,3 +77,4 @@ public class ProdutoController {
         return ResponseEntity.ok(new ProdutoDto(produto, transacaoService.buscarQuantidadeEmEstoque(produto.getId())));
     }
 }
+*/

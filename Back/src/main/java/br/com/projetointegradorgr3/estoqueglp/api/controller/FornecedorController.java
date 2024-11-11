@@ -1,4 +1,4 @@
-package br.com.projetointegradorgr3.estoqueglp.api.controller;
+/*package br.com.projetointegradorgr3.estoqueglp.api.controller;
 
 import br.com.projetointegradorgr3.estoqueglp.api.dto.FornecedorDto;
 import br.com.projetointegradorgr3.estoqueglp.domain.exception.NotFoundException;
@@ -79,3 +79,4 @@ public class FornecedorController {
         return ResponseEntity.ok(new FornecedorDto(fornecedor));
     }
 }
+*/

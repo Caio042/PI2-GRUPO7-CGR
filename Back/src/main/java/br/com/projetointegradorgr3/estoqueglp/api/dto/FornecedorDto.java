@@ -1,4 +1,4 @@
-package br.com.projetointegradorgr3.estoqueglp.api.dto;
+/*package br.com.projetointegradorgr3.estoqueglp.api.dto;
 
 import br.com.projetointegradorgr3.estoqueglp.domain.exception.UnprocessableEntityException;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Fornecedor;
@@ -47,3 +47,4 @@ public record FornecedorDto(
         this(fornecedor.getId(), fornecedor.getNome(), fornecedor.getEndereco(), fornecedor.getTelefone());
     }
 }
+*/

@@ -1,4 +1,4 @@
-package br.com.projetointegradorgr3.estoqueglp.domain.model;
+/*package br.com.projetointegradorgr3.estoqueglp.domain.model;
 
 import jakarta.persistence.*;
 
@@ -51,3 +51,4 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 }
+*/

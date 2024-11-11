@@ -44,11 +44,12 @@ public class EstoqueController {
                 .body(new EstoqueDto(transacao));
     }
 
+    /*
     @GetMapping
     @Operation(summary = "Buscar transações de estoque",
             description = "Buscar todas as transações do usuário, pode ser filtrado pelo id do produto")
-    public ResponseEntity<List<EstoqueDto>> buscar(@RequestParam(value = "produto", required = false) Integer produtoId) {
-        List<Transacao> transacoes = transacaoService.buscar(produtoId);
+    public ResponseEntity<List<EstoqueDto>> buscar(@RequestParam(value = "produto", required = false) String produto) {
+        List<Transacao> transacoes = transacaoService.buscar(produto);
         List<EstoqueDto> dtos = transacoes.stream().sorted(Comparator.comparing(Transacao::getData).reversed()).map(EstoqueDto::new).toList();
         return ResponseEntity.ok(dtos);
     }
@@ -60,5 +61,5 @@ public class EstoqueController {
         Transacao transacao = transacaoService.buscarPorId(id);
 
         return ResponseEntity.ok(new EstoqueDto(transacao));
-    }
+    }*/
 }

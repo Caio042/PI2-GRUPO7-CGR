@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface TransacaoRepository extends JpaRepository<Transacao, Integer> {
 
-    List<Transacao> findAllByProdutoIdAndUsuarioUsername(Integer produtoId, String username);
+    List<Transacao> findAllByProdutoAndUsuarioUsername(String produto, String username);
 
     List<Transacao> findAllByUsuarioUsername(String username);
 

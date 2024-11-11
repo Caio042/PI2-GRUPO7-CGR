@@ -1,4 +1,4 @@
-package br.com.projetointegradorgr3.estoqueglp.api.dto;
+/*package br.com.projetointegradorgr3.estoqueglp.api.dto;
 
 import br.com.projetointegradorgr3.estoqueglp.domain.exception.UnprocessableEntityException;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Produto;
@@ -54,3 +54,4 @@ public record ProdutoDto(
         this(produto, produto.getQuantidadeEstoque());
     }
 }
+*/

@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Transient;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity(name = "controle_estoque")
@@ -18,10 +19,6 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transacao")
     private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "id_produto")
-    private Produto produto;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -36,12 +33,27 @@ public class Transacao {
     @Column(name = "data_transacao")
     private LocalDateTime data;
 
+    @Column(name = "valor_compra")
+    private BigDecimal valorCompra;
+
+    @Column(name = "valor_venda")
+    private BigDecimal valorVenda;
+
+    @Column(name = "nome_fornecedor")
+    private String nomeFornecedor;
+
+    @Column(name = "nome_produto")
+    private String produto;
+
     @Transient
     private int estoqueAposTransacao;
 
-    public int calcularValorDaTransacao() {
+    @Transient
+    private BigDecimal valorAposTransacao;
+
+    public int calcularQuantidadeDaTransacao() {
         return entradas - vendas;
-    }
+   }
 
     public Integer getId() {
         return id;
@@ -51,11 +63,11 @@ public class Transacao {
         this.id = id;
     }
 
-    public Produto getProduto() {
+    public String getProduto() {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
+    public void setProduto(String produto) {
         this.produto = produto;
     }
 
@@ -97,5 +109,29 @@ public class Transacao {
 
     public void setEstoqueAposTransacao(int estoqueAposTransacao) {
         this.estoqueAposTransacao = estoqueAposTransacao;
+    }
+
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
+    }
+
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
+    }
+
+    public BigDecimal getValorVenda() {
+        return valorVenda;
+    }
+
+    public void setValorVenda(BigDecimal valorVenda) {
+        this.valorVenda = valorVenda;
+    }
+
+    public BigDecimal getValorCompra() {
+        return valorCompra;
+    }
+
+    public void setValorCompra(BigDecimal valorCompra) {
+        this.valorCompra = valorCompra;
     }
 }
