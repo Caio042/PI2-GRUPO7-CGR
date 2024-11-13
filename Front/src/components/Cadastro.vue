@@ -35,11 +35,13 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      console.log('Enviando dados do formulário:', this.form);
       try {
         await api.post('/cadastro', this.form);
         alert('Cadastro realizado com sucesso!');
         this.$router.push('/'); // Redireciona para a página de login
       } catch (error) {
+        console.error('Erro ao realizar o cadastro:', error);
         alert('Erro ao realizar o cadastro. Tente novamente.');
       }
     },
