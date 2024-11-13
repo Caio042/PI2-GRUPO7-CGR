@@ -35,16 +35,23 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log('Enviando dados do formulário:', this.form);
+      const formData = {
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+      };
+
+  console.log('Enviando dados do formulário:', formData);
       try {
-        await api.post('/cadastro', this.form);
+        const response = await api.post('/cadastro', formData);
+        console.log('Resposta do servidor:', response);
         alert('Cadastro realizado com sucesso!');
         this.$router.push('/'); // Redireciona para a página de login
       } catch (error) {
         console.error('Erro ao realizar o cadastro:', error);
         alert('Erro ao realizar o cadastro. Tente novamente.');
       }
-    },
-  },
+    }
+  }
 }
 </script>
