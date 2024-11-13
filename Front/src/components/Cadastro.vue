@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import api from '../axiosConfig';
+
 export default {
   name: 'Cadastro',
   data() {
@@ -32,9 +34,14 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
-      // Lógica para enviar os dados para o backend
-      console.log('Dados do formulário:', this.form)
+    async handleSubmit() {
+      try {
+        await api.post('/cadastro', this.form);
+        alert('Cadastro realizado com sucesso!');
+        this.$router.push('/'); // Redireciona para a página de login
+      } catch (error) {
+        alert('Erro ao realizar o cadastro. Tente novamente.');
+      }
     },
   },
 }

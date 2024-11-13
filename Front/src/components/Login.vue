@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import api from '../axiosConfig';
+
 export default {
   name: 'Login',
   data() {
@@ -33,12 +35,20 @@ export default {
         email: '',
         password: '',
       },
+      errorMessage: ''
     }
   },
   methods: {
-    handleSubmit() {
-      // Supondo que o login foi bem-sucedido
-      this.$router.push('/menu-principal')
+    async handleSubmit() {
+      try {
+        const response = await api.post('/login', this.form);
+        // Supondo que o login retorne um token de autenticação
+        const token = response.data.token;
+        localStorage.setItem('authToken', token); // Salva o token no localStorage
+        this.$router.push('/menu-principal'); // Redireciona para o menu principal
+      } catch (error) {
+        this.errorMessage = 'Falha no login. Verifique suas credenciais.';
+      }
     },
   },
 }
