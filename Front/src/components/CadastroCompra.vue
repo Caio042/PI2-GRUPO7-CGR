@@ -39,6 +39,7 @@
       </div>
       <button type="submit">Cadastrar</button>
     </form>
+    <button @click="goBack" class="button-voltar">Voltar ao Menu Principal</button>
   </div>
 </template>
 
@@ -68,7 +69,7 @@ export default {
 
         const response = await api.post('/estoques', formData, {
           headers: {
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         console.log('Resposta do servidor:', response);
@@ -79,7 +80,48 @@ export default {
         alert('Erro ao realizar o cadastro da compra. Tente novamente.');
       }
     },
+    goBack() {
+      this.$router.push('/menu-principal');
+    }
   },
 }
 </script>
 
+<style scoped>
+.cadastro-compra {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.cadastro-compra {
+  width: 350px;
+  min-height: 350px;
+  padding: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cadastro-compra form {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-compra .form-group {
+  margin-bottom: 20px;
+}
+
+.button-voltar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-voltar:hover {
+  background-color: #45a049;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div class="relatorios">
     <h1>Relatórios</h1>
-    <!-- Estoque -->
+    <!-- seus relatórios aqui -->
     <div class="relatorio-card" v-for="produto in relatorio.por_produtos" :key="produto.produto">
       <h2>Estoque</h2>
       <p>Produto: {{ produto.produto }}</p>
@@ -10,12 +10,12 @@
       <p>Total em Vendas: R$ {{ produto.total_em_vendas }}</p>
     </div>
 
-    <!-- Financeiro -->
     <div class="relatorio-card">
       <h2>Financeiro</h2>
-      <p>Total em Vendas: R$ {{ total_em_vendas }}</p>
-      <p>Total em Compras: R$ {{ total_em_compras }}</p>
+      <p>Total em Vendas: R$ {{ totalVendas }}</p>
+      <p>Total em Compras: R$ {{ totalCompras }}</p>
     </div>
+    <router-link to="/menu-principal" class="button">Voltar ao Menu Principal</router-link>
   </div>
 </template>
 
@@ -70,5 +70,14 @@ export default {
   margin: 10px 0;
   border-radius: 5px;
 }
-</style>
 
+.button {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+</style>
