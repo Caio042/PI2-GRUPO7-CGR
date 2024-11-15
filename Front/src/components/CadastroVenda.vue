@@ -63,12 +63,7 @@ export default {
 
       console.log('Dados da venda:', formData);
       try {
-        const response = await api.post('/estoques', formData, {
-          headers: {
-            Authorization: 'Basic ZnVsYW5vQGVtYWlsLmNvbToxMjM0',
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await api.post('/estoques', formData);
         console.log('Resposta do servidor:', response);
         alert('Cadastro de venda realizado com sucesso!');
         this.$router.push('/menu-principal'); // Redireciona para o menu principal
@@ -80,3 +75,4 @@ export default {
   },
 }
 </script>
+

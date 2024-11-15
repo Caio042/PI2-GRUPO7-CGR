@@ -40,9 +40,6 @@
       <button type="submit">Cadastrar</button>
     </form>
   </div>
-  <!-- <div class="image-container">
-    <img src="./assets/entregaGlp.png" alt="Imagem ilustrativa" class="image" />
-  </div> -->
 </template>
 
 <script>
@@ -53,10 +50,10 @@ export default {
   data() {
     return {
       form: {
-        fornecedor: '',
-        produto: '',
         quantidade_entrada: '',
         valor_compra: '',
+        produto: '',
+        fornecedor: '',
       },
     }
   },
@@ -66,10 +63,13 @@ export default {
 
       console.log('Dados do formulário:', formData);
       try {
+        const token = localStorage.getItem('authToken');
+        console.log('Token:', token);
+
         const response = await api.post('/estoques', formData, {
           headers: {
-            Authorization: 'Basic ZnVsYW5vQGVtYWlsLmNvbToxMjM0'
-          }
+            Authorization: `${token}`,
+          },
         });
         console.log('Resposta do servidor:', response);
         alert('Cadastro de compra realizado com sucesso!');
@@ -82,3 +82,4 @@ export default {
   },
 }
 </script>
+

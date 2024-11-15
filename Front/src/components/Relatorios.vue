@@ -1,21 +1,20 @@
 <template>
   <div class="relatorios">
     <h1>Relatórios</h1>
-
     <!-- Estoque -->
-    <div class="relatorio-card" v-for="produto in relatorio.porProdutos" :key="produto.produto">
+    <div class="relatorio-card" v-for="produto in relatorio.por_produtos" :key="produto.produto">
       <h2>Estoque</h2>
       <p>Produto: {{ produto.produto }}</p>
       <p>Quantidade: {{ produto.quantidade }}</p>
-      <p>Total em Compras: R$ {{ produto.totalCompras }}</p>
-      <p>Total em Vendas: R$ {{ produto.totalVendas }}</p>
+      <p>Total em Compras: R$ {{ produto.total_em_compras }}</p>
+      <p>Total em Vendas: R$ {{ produto.total_em_vendas }}</p>
     </div>
 
     <!-- Financeiro -->
     <div class="relatorio-card">
       <h2>Financeiro</h2>
-      <p>Total em Vendas: R$ {{ totalVendas }}</p>
-      <p>Total em Compras: R$ {{ totalCompras }}</p>
+      <p>Total em Vendas: R$ {{ total_em_vendas }}</p>
+      <p>Total em Compras: R$ {{ total_em_compras }}</p>
     </div>
   </div>
 </template>
@@ -28,18 +27,18 @@ export default {
   data() {
     return {
       relatorio: {
-        porProdutos: [],
-        totalVendas: 0,
-        totalCompras: 0,
+        por_produtos: [],
+        total_em_vendas: 0,
+        total_em_compras: 0,
       },
     };
   },
   computed: {
     totalVendas() {
-      return this.relatorio.totalVendas.toFixed(2);
+      return this.relatorio.total_em_vendas.toFixed(2);
     },
     totalCompras() {
-      return this.relatorio.totalCompras.toFixed(2);
+      return this.relatorio.total_em_compras.toFixed(2);
     },
   },
   methods: {
@@ -47,11 +46,11 @@ export default {
       try {
         const response = await api.get('/relatorios', {
           headers: {
-            Authorization: 'Basic ZnVsYW5vQGVtYWlsLmNvbToxMjM0',
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('authToken')}`,
           },
         });
         this.relatorio = response.data;
+
       } catch (error) {
         console.error('Erro ao buscar o relatório:', error);
         alert('Erro ao buscar o relatório. Tente novamente.');
@@ -72,3 +71,4 @@ export default {
   border-radius: 5px;
 }
 </style>
+

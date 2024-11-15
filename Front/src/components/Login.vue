@@ -9,7 +9,6 @@
       <button type="submit">Entrar</button>
     </form>
 
-    <!-- Mensagem de erro -->
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 
     <p>
@@ -36,7 +35,6 @@ export default {
     async handleSubmit() {
       try {
         const response = await api.post('/login', this.form);
-        // Supondo que o login retorne um token de autenticação
         const token = response.data.token;
         localStorage.setItem('authToken', token); // Salva o token no localStorage
         this.$router.push('/menu-principal'); // Redireciona para o menu principal
@@ -47,3 +45,5 @@ export default {
   },
 }
 </script>
+
+
