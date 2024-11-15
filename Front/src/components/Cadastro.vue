@@ -36,9 +36,9 @@ export default {
   methods: {
     async handleSubmit() {
       const formData = {
-        nome: this.form.name,
+        nome: this.form.nome,
         login: this.form.login,
-        senha: this.form.password,
+        senha: this.form.senha,
       };
 
   console.log('Enviando dados do formulário:', formData);
