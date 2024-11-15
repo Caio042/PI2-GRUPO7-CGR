@@ -7,7 +7,7 @@
     />
     <h1>Bem-vindo!</h1>
     <div class="menu-buttons">
-      <router-link to="/cadastro-compra" class="button"
+      <router-link to="/estoques" class="button"
         >Cadastrar Compra</router-link
       >
       <router-link to="/cadastro-venda" class="button"

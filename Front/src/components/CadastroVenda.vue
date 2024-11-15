@@ -17,20 +17,20 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="quantidade">Quantidade:</label>
+        <label for="quantidade_saida">Quantidade:</label>
         <input
           type="number"
-          id="quantidade"
-          v-model="form.quantidade"
+          id="quantidade_saida"
+          v-model="form.quantidade_saida"
           required
         />
       </div>
       <div class="form-group">
-        <label for="valorVenda">Valor de Venda (R$):</label>
+        <label for="valor_venda">Valor de Venda (R$):</label>
         <input
           type="number"
-          id="valorVenda"
-          v-model="form.valorVenda"
+          id="valor_venda"
+          v-model="form.valor_venda"
           required
           step="0.01"
         />
@@ -41,20 +41,38 @@
 </template>
 
 <script>
+import api from '../axiosConfig';
+
 export default {
   name: 'CadastroVenda',
   data() {
     return {
       form: {
         produto: '',
-        quantidade: '',
-        valorVenda: '',
+        quantidade_saida: '',
+        valor_venda: '',
       },
     }
   },
   methods: {
-    handleSubmit() {
-      console.log('Dados da venda:', this.form)
+    async handleSubmit() {
+      const formData = { ...this.form };
+
+      console.log('Dados da venda:', formData);
+      try {
+        const response = await api.post('/estoques', formData, {
+          headers: {
+            Authorization: 'Basic ZnVsYW5vQGVtYWlsLmNvbToxMjM0',
+            'Content-Type': 'application/json',
+          },
+        });
+        console.log('Resposta do servidor:', response);
+        alert('Cadastro de venda realizado com sucesso!');
+        this.$router.push('/menu-principal'); // Redireciona para o menu principal
+      } catch (error) {
+        console.error('Erro ao realizar o cadastro da venda:', error);
+        alert('Erro ao realizar o cadastro da venda. Tente novamente.');
+      }
     },
   },
 }

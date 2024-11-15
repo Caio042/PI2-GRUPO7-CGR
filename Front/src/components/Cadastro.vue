@@ -7,12 +7,12 @@
     />
     <h1>Cadastro</h1>
     <form @submit.prevent="handleSubmit">
-      <label for="name">Nome:</label>
-      <input type="text" id="name" v-model="form.name" required />
-      <label for="email">Email:</label>
-      <input type="email" id="email" v-model="form.email" required />
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" v-model="form.nome" required />
+      <label for="login">Email:</label>
+      <input type="email" id="login" v-model="form.login" required />
       <label for="password">Senha:</label>
-      <input type="password" id="password" v-model="form.password" required />
+      <input type="password" id="senha" v-model="form.senha" required />
       <button type="submit">Cadastrar</button>
     </form>
     <p>Já tem cadastro? <router-link to="/">Login</router-link></p>
@@ -27,23 +27,23 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        email: '',
-        password: '',
+        nome: '',
+        login: '',
+        senha: '',
       },
     }
   },
   methods: {
     async handleSubmit() {
       const formData = {
-        name: this.form.name,
-        email: this.form.email,
-        password: this.form.password,
+        nome: this.form.name,
+        login: this.form.login,
+        senha: this.form.password,
       };
 
   console.log('Enviando dados do formulário:', formData);
       try {
-        const response = await api.post('/cadastro', formData);
+        const response = await api.post('/usuarios', formData);
         console.log('Resposta do servidor:', response);
         alert('Cadastro realizado com sucesso!');
         this.$router.push('/'); // Redireciona para a página de login

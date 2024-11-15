@@ -13,7 +13,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', name: 'login', component: Login },
-    { path: '/cadastro', name: 'cadastro', component: Cadastro },
+    { path: '/usuarios', name: 'cadastro', component: Cadastro },
     {
       path: '/menu-principal',
       name: 'menu-principal',
@@ -21,7 +21,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/cadastro-compra',
+      path: '/estoques',
       name: 'cadastro-compra',
       component: CadastroCompra,
       meta: { requiresAuth: true },

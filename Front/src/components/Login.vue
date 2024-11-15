@@ -9,9 +9,9 @@
     <h1>Login</h1>
     <form @submit.prevent="handleSubmit">
       <label for="email">Email:</label>
-      <input type="email" id="email" v-model="form.email" required />
-      <label for="password">Senha:</label>
-      <input type="password" id="password" v-model="form.password" required />
+      <input type="email" id="login" v-model="form.login" required />
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" v-model="form.senha" required />
       <button type="submit">Entrar</button>
     </form>
 
@@ -19,7 +19,7 @@
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 
     <p>
-      Não possui cadastro? <router-link to="/Cadastro">Cadastre-se</router-link>
+      Não possui cadastro? <router-link to="/usuarios">Cadastre-se</router-link>
     </p>
   </div>
 </template>
@@ -32,8 +32,8 @@ export default {
   data() {
     return {
       form: {
-        email: '',
-        password: '',
+        login: '',
+        senha: '',
       },
       errorMessage: ''
     }

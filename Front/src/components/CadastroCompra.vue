@@ -10,13 +10,13 @@
       <div class="form-group">
         <label for="fornecedor">Fornecedor:</label>
         <select id="fornecedor" v-model="form.fornecedor">
-          <option value="liquigas">Liquigás</option>
-          <option value="ultragaz">Ultragaz</option>
+          <option value="Ultragaz">Ultragaz</option>
+          <option value="Liquigás">Liquigás</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="tamanho">Tamanho do Vasilhame:</label>
-        <select id="tamanho" v-model="form.tamanho">
+        <label for="produto">Tamanho do Vasilhame:</label>
+        <select id="produto" v-model="form.produto">
           <option value="P05">P05</option>
           <option value="P13">P13</option>
           <option value="P20">P20</option>
@@ -24,20 +24,20 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="quantidade">Quantidade:</label>
+        <label for="quantidade_entrada">Quantidade:</label>
         <input
           type="number"
-          id="quantidade"
-          v-model="form.quantidade"
+          id="quantidade_entrada"
+          v-model="form.quantidade_entrada"
           required
         />
       </div>
       <div class="form-group">
-        <label for="valor">Valor (R$):</label>
+        <label for="valor_compra">Valor (R$):</label>
         <input
           type="number"
-          id="valor"
-          v-model="form.valor"
+          id="valor_compra"
+          v-model="form.valor_compra"
           required
           step="0.01"
         />
@@ -51,22 +51,38 @@
 </template>
 
 <script>
+import api from '../axiosConfig';
+
 export default {
   name: 'CadastroCompra',
   data() {
     return {
       form: {
         fornecedor: '',
-        tamanho: '',
-        quantidade: '',
-        valor: '',
+        produto: '',
+        quantidade_entrada: '',
+        valor_compra: '',
       },
     }
   },
   methods: {
-    handleSubmit() {
-      // Lógica para enviar os dados para o backend
-      console.log('Dados do formulário:', this.form)
+    async handleSubmit() {
+      const formData = { ...this.form };
+
+      console.log('Dados do formulário:', formData);
+      try {
+        const response = await api.post('/estoques', formData, {
+          headers: {
+            Authorization: 'Basic ZnVsYW5vQGVtYWlsLmNvbToxMjM0'
+          }
+        });
+        console.log('Resposta do servidor:', response);
+        alert('Cadastro de compra realizado com sucesso!');
+        this.$router.push('/menu-principal'); // Redireciona para o menu principal
+      } catch (error) {
+        console.error('Erro ao realizar o cadastro da compra:', error);
+        alert('Erro ao realizar o cadastro da compra. Tente novamente.');
+      }
     },
   },
 }
