@@ -1,10 +1,5 @@
 <template>
   <div class="relatorios">
-    <img
-      src="./assets/GLP.png"
-      alt="CGR - Controle de Gestão para Revendas"
-      class="logo"
-    />
     <h1>Relatórios</h1>
 
     <!-- Estoque -->
