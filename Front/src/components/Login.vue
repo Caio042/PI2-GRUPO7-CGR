@@ -1,11 +1,5 @@
 <template>
   <div class="login">
-    <img
-      src="./assets/GLP.png"
-      alt="CGR - Controle de Gestão para Revendas"
-      class="logo"
-    />
-
     <h1>Login</h1>
     <form @submit.prevent="handleSubmit">
       <label for="email">Email:</label>

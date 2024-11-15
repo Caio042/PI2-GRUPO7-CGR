@@ -1,10 +1,5 @@
 <template>
   <div class="cadastro-container">
-    <img
-      src="./assets/GLP.png"
-      alt="CGR - Controle de Gestão para Revendas"
-      class="logo"
-    />
     <h1>Cadastro</h1>
     <form @submit.prevent="handleSubmit">
       <label for="nome">Nome:</label>

@@ -1,10 +1,5 @@
 <template>
   <div class="menu-principal">
-    <img
-      src="./assets/GLP.png"
-      alt="CGR - Controle de Gestão para Revendas"
-      class="logo"
-    />
     <h1>Bem-vindo!</h1>
     <div class="menu-buttons">
       <router-link to="/estoques" class="button"

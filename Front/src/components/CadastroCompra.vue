@@ -1,10 +1,5 @@
 <template>
   <div class="cadastro-compra">
-    <img
-      src="./assets/GLP.png"
-      alt="CGR - Controle de Gestão para Revendas"
-      class="logo"
-    />
     <h1>Cadastro de Compra de Gás</h1>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
