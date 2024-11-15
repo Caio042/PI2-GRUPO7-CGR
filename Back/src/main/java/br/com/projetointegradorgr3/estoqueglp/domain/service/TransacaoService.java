@@ -111,8 +111,12 @@ public class TransacaoService {
             for (Transacao transacao : entrySet.getValue()) {
                 estoque += transacao.calcularQuantidadeDaTransacao();
                 transacao.setEstoqueAposTransacao(estoque);
-                totalCompra = totalCompra.add(transacao.getValorCompra());
-                totalVenda = totalVenda.add(transacao.getValorVenda());
+
+                var valorCompraTransacao = transacao.getValorCompra().multiply(new BigDecimal(transacao.getEntradas()));
+                var valorVendaTransacao = transacao.getValorVenda().multiply(new BigDecimal(transacao.getVendas()));
+
+                totalCompra = totalCompra.add(valorCompraTransacao);
+                totalVenda = totalVenda.add(valorVendaTransacao);
             }
 
             var relatorioPorProduto = new RelatorioPorProduto(entrySet.getKey(), estoque, totalVenda, totalCompra);
