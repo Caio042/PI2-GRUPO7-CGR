@@ -35,6 +35,13 @@
           step="0.01"
         />
       </div>
+      <div class="form-group">
+        <label for="fornecedor">Fornecedor:</label>
+        <select id="fornecedor" v-model="form.fornecedor">
+          <option value="Ultragaz">Ultragaz</option>
+          <option value="Liquigás">Liquigás</option>
+        </select>
+      </div>
       <button type="submit">Cadastrar Venda</button>
     </form>
   </div>
@@ -51,6 +58,7 @@ export default {
         produto: '',
         quantidade_saida: '',
         valor_venda: '',
+        fornecedor: '',
       },
     }
   },
