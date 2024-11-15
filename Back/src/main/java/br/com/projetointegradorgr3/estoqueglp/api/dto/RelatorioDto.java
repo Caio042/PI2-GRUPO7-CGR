@@ -13,6 +13,7 @@ public record RelatorioDto(
         @JsonProperty("total_em_compras")
         BigDecimal totalCompras,
 
+        @JsonProperty("por_produtos")
         List<RelatorioPorProduto> porProdutos
 ) {
 
