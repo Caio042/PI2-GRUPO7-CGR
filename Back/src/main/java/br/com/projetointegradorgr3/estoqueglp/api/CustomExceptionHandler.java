@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
@@ -53,7 +54,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
                 .toList();
 
-        List<String> errors = List.of(globalErrors, fieldErros).stream().flatMap(Collection::stream).toList();
+        List<String> errors = Stream.of(globalErrors, fieldErros).flatMap(Collection::stream).toList();
 
         return super.handleExceptionInternal(ex, new DefaultResponse(errors), headers, status, request);
     }
