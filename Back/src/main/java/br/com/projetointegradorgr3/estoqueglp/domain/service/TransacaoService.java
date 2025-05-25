@@ -2,7 +2,6 @@ package br.com.projetointegradorgr3.estoqueglp.domain.service;
 
 import br.com.projetointegradorgr3.estoqueglp.api.dto.RelatorioDto;
 import br.com.projetointegradorgr3.estoqueglp.api.dto.RelatorioDto.RelatorioPorProduto;
-import br.com.projetointegradorgr3.estoqueglp.domain.exception.NotFoundException;
 import br.com.projetointegradorgr3.estoqueglp.domain.exception.UnprocessableEntityException;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Transacao;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Usuario;
@@ -22,7 +21,6 @@ public class TransacaoService {
 
     private final TransacaoRepository repository;
     private final UsuarioService usuarioService;
-    private static final String RECURSO = "Transação";
 
     public TransacaoService(TransacaoRepository repository, UsuarioService usuarioService) {
         this.repository = repository;
@@ -55,14 +53,6 @@ public class TransacaoService {
         return transacao;
     }
 
-    public Transacao buscarPorId(Integer id) {
-        String username = usuarioService.usuarioLogado();
-        Transacao transacaoSemCalculo = repository.findByIdAndUsuarioUsername(id, username).orElseThrow(() -> new NotFoundException(RECURSO, id));
-        List<Transacao> transacoes = buscar(transacaoSemCalculo.getProduto());
-
-        return transacoes.stream().filter(transacao -> transacao.getId().equals(transacaoSemCalculo.getId())).findAny().orElseThrow(() -> new IllegalStateException("Problemas ao calcular estoque"));
-    }
-
     public List<Transacao> buscar(String nomeProduto) {
         String username = usuarioService.usuarioLogado();
         List<Transacao> transacoes;
@@ -87,16 +77,7 @@ public class TransacaoService {
         return preencherQuantidadeEmEstoqueAposOperacao(transacoes);
     }
 
-    public int buscarQuantidadeEmEstoque(String produto) {
-        List<Transacao> transacoes = buscar(produto);
-        if (transacoes.isEmpty()) {
-            return 0;
-        }
-
-        return transacoes.getLast().getEstoqueAposTransacao();
-    }
-
-    public RelatorioDto preencherQuantidadeEmEstoqueAposOperacao(List<Transacao> transacoes) {
+    private RelatorioDto preencherQuantidadeEmEstoqueAposOperacao(List<Transacao> transacoes) {
         Map<String, List<Transacao>> transacoesAgrupadas = transacoes.stream()
                 .collect(Collectors.groupingBy(Transacao::getProduto));
 
