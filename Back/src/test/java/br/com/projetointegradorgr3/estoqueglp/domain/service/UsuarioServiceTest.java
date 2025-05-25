@@ -1,11 +1,14 @@
 package br.com.projetointegradorgr3.estoqueglp.domain.service;
 
-import br.com.projetointegradorgr3.estoqueglp.api.dto.TokenDto;
+import br.com.projetointegradorgr3.estoqueglp.api.controller.UsuarioController;
+import br.com.projetointegradorgr3.estoqueglp.api.dto.LoginDto;
 import br.com.projetointegradorgr3.estoqueglp.domain.exception.UsuarioExistenteException;
 import br.com.projetointegradorgr3.estoqueglp.domain.model.Usuario;
 import br.com.projetointegradorgr3.estoqueglp.domain.repository.UsuarioRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,11 +24,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @DisplayName("Testes nas funcionalidades de login e cadastro no sistema")
-class UsuarioServiceTest {
+class UsuarioTest {
 
     private final UsuarioRepository repository = mock(UsuarioRepository.class);
     private final AuthenticationManager authenticationManager = mock(AuthenticationManager.class);
-    private final UsuarioService usuarioService = new UsuarioService(repository, new BCryptPasswordEncoder(), authenticationManager);
+    private final UsuarioService usuarioService = new UsuarioService(repository, new BCryptPasswordEncoder());
+    private final UsuarioController usuarioController = new UsuarioController(usuarioService, authenticationManager);
     private final String USUARIO = "email@email.com";
 
     @Test
@@ -33,8 +37,8 @@ class UsuarioServiceTest {
     void login_deveDispararException_dadoUsuarioOuSenhaInvalidos() {
         when(authenticationManager.authenticate(any())).thenThrow(new BadCredentialsException("Usuário ou senha invalidos"));
 
-        assertThatExceptionOfType(BadCredentialsException.class)
-                .isThrownBy(() -> usuarioService.login(USUARIO, "mock"));
+        assertThat(usuarioController.login(new LoginDto(USUARIO, "mock")))
+                .returns(HttpStatus.UNAUTHORIZED, ResponseEntity::getStatusCode);
     }
 
     @Test
@@ -44,8 +48,8 @@ class UsuarioServiceTest {
 
         when(authenticationManager.authenticate(any())).thenReturn(authentication);
 
-        assertThat(usuarioService.login(USUARIO, "mock"))
-                .returns("ZW1haWxAZW1haWwuY29tOm1vY2s=", TokenDto::token);
+        assertThat(usuarioController.login(new LoginDto(USUARIO, "mock")))
+                .returns("Basic ZW1haWxAZW1haWwuY29tOm1vY2s=", response -> response.getBody().token());
     }
 
     @Test

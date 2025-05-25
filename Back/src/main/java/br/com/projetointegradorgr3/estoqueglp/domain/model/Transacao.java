@@ -34,10 +34,10 @@ public class Transacao {
     private LocalDateTime data;
 
     @Column(name = "valor_compra")
-    private BigDecimal valorCompra;
+    private BigDecimal valorCompra = BigDecimal.ZERO;
 
     @Column(name = "valor_venda")
-    private BigDecimal valorVenda;
+    private BigDecimal valorVenda = BigDecimal.ZERO;
 
     @Column(name = "nome_fornecedor")
     private String nomeFornecedor;

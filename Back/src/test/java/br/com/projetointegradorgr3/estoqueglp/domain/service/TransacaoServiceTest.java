@@ -25,6 +25,7 @@ class TransacaoServiceTest {
     
     private final String NOME_PRODUTO = "botijão de 10 litros";
     private final String USUARIO_LOGADO = "email@email.com";
+    private final String PASSWORD = "1234";
 
     @Test
     @DisplayName("Cenário 1: Consulta correta do estoque após compra e venda")
@@ -154,34 +155,32 @@ class TransacaoServiceTest {
     @Test
     @DisplayName("Cenário 3: Geração de relatório financeiro após compra e venda.")
     void gerarRelatorio_deveCalcularOTotalDeComprasEVendas() {
+        Usuario usuario = new Usuario(USUARIO_LOGADO, PASSWORD);
+
         Transacao compra = new Transacao();
 
         compra.setData(LocalDateTime.of(2025, 1, 1, 0, 0, 0));
-        compra.setUsuario(new Usuario(USUARIO_LOGADO, "1234"));
+        compra.setUsuario(usuario);
         compra.setNomeFornecedor("juca gas");
-        compra.setValorVenda(BigDecimal.ZERO);
         compra.setValorCompra(BigDecimal.valueOf(70));
-        compra.setVendas(0);
         compra.setEntradas(100);
         compra.setProduto(NOME_PRODUTO);
 
         Transacao venda = new Transacao();
 
         venda.setData(LocalDateTime.of(2025, 1, 2, 0, 0, 0));
-        venda.setUsuario(new Usuario(USUARIO_LOGADO, "1234"));
+        venda.setUsuario(usuario);
         venda.setNomeFornecedor("juca gas");
         venda.setValorVenda(BigDecimal.valueOf(120));
-        venda.setValorCompra(BigDecimal.ZERO);
         venda.setVendas(5);
-        venda.setEntradas(0);
         venda.setProduto(NOME_PRODUTO);
 
-        when(usuarioService.usuarioLogado()).thenReturn(USUARIO_LOGADO);
-        when(repository.findAllByUsuarioUsername(USUARIO_LOGADO)).thenReturn(List.of(compra, venda));
+        when(usuarioService.usuarioLogado()).thenReturn(usuario.getUsername());
+        when(repository.findAllByProdutoAndUsuarioUsername(NOME_PRODUTO, usuario.getUsername())).thenReturn(List.of(compra, venda));
 
-        assertThat(service.gerarRelatorio(null))
-                .returns(BigDecimal.valueOf(7000L), RelatorioDto::totalCompras)
-                .returns(BigDecimal.valueOf(600L), RelatorioDto::totalVendas)
-                .returns(BigDecimal.valueOf(-6400L), relatorio -> relatorio.totalVendas().subtract(relatorio.totalCompras()));
+        assertThat(service.gerarRelatorio(NOME_PRODUTO))
+                .returns(BigDecimal.valueOf(7000), RelatorioDto::totalCompras)
+                .returns(BigDecimal.valueOf(600), RelatorioDto::totalVendas)
+                .returns(BigDecimal.valueOf(-6400), relatorio -> relatorio.totalVendas().subtract(relatorio.totalCompras()));
     }
 }
